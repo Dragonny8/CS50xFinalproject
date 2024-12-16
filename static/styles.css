@@ -1,0 +1,122 @@
+.btn-red {
+    background-color: red;
+    color: black;
+    border-color: black;
+    border-width: 10 px;
+}
+
+.btn-green {
+    background-color: green;
+    color: white;
+    border-color: black;
+    border-width: 10 px;
+}
+.btn:hover {
+    background-color: lightblue;
+    color: black;
+    border: 2px solid black;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.message {
+    border: 2px solid black;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 20px;
+    background-color: black;
+    color: white
+}
+
+
+#searchable-dropdown {
+    width: 300px;
+}
+
+#searchable-ingredient {
+    width: 300px;
+}
+
+#ingredient-list {
+    display: table;
+    width: 100%;
+}
+
+#ingredient-list li {
+    display: table-row;
+}
+
+#ingredient-list li span {
+    display: table-cell;
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+.header {
+    background-color: gray;
+    color: white;
+}
+
+.choice:hover {
+    background-color: yellowgreen
+}
+
+.choice.drag-over {
+    background-color: lightblue;
+}
+
+.choice {
+    cursor: grab;
+}
+
+@media print {
+    /* Hide everything by default */
+    body {
+        visibility: hidden;
+    }
+
+    /* Show only the printable area */
+    .printable {
+        visibility: visible !important;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+    
+}
+
+
+.nav-link {
+    color: white;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.custom-footer {
+    background-color : rgb(46, 48, 50);
+    color : white;
+    padding: 5px;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
