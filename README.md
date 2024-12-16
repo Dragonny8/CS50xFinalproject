@@ -66,6 +66,7 @@ Much of the functionalities that I projected in the beggining I ended up not cre
 - Develop `weekly planner` to allow the user to replace some meals manually (getting options that were not originally generated).
 - Enhance the randomizer to select a meal based on the ingredients/leftovers that the user has.
 - Work on a global basis database of ingredients and recipes and then allow user to personalize the portfolio.
+
 One day I will get back to this project to further enhance it, but for now it fullfills my needs.
 I've also ended up dealing with a lot more JavaScript than I intended originally. Had to learn in order to develop draggability function in the `weekly planner` and to use JQuery library to learn how to make a page dinamically update and comunnicate with backend (got to admit that I had some of help of AI to make that last part work in 100%).
 This project ended being perfect to end this course: being challenging and touching almost every topic that was studied throughout the course, while learning how to better manage expectations, frustations and growing as a person with the programming tool on its toolbelt to solve further challenges that may arise in my future.
