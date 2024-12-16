@@ -55,19 +55,23 @@ Basic features include:
 
 Advanced features include:
 - `Ingredients`: This tab allows the user to add or remove ingredients to its portfolio.
-- `Add Recipe`: This tab allows the user to create recipes with the ingredients, quantity and units as desired, from the users portfolio. This tab is dinamically updated allowing user to see the recipe in construction with the possibility to remove ingredients that were incorrectly introduced.
-- `Recipes`: Tab for the user to query existing recipes in its portfolio. User also has the possibility to remove recipes that they do not wnat to be in its portfolio.
+- `Add Recipe`: This tab allows the user to create recipes with the ingredients, quantity and units as desired, from the users portfolio. This tab is dynamically updated allowing user to see the recipe in construction with the possibility to remove ingredients that were incorrectly introduced.
+- `Recipes`: Tab for the user to query existing recipes in its portfolio. User also has the possibility to remove recipes that they do not want to be in its portfolio.
 - `Meal Decider`: The randomizer of meals. It is the main feature of this app, allowing the user for the "chef" to choose a random plate from the portfolio. It also has the feature to generate new random meals from the remaining meals if the user does not want that plate.
 - `Weekly Planer`: An enlarged version of the randomizer. The user may generate a full 14-plate weekly plan from its portfolio. It has the functionality of redrawing the plan. Further features include the possibility of dragging meals to rearrange to user's preference and save to show later in the `Weekly Plan` tab. After drawing the weekly plan, this tab also generates a grocery list, which is based on all 14 recipes with a printing in pdf possibility. This allows the user to have the week all planned out including a list of what to buy in the market.
 
 ### Final remarks, lessons learned and future work:
 This project started as something simple in my head but it quickly escalated. I learned how to not underestimate what might seem simple. 
-Much of the functionalities that I projected in the beggining I ended up not creating them as I was dedicating too much time and I want to dedicate to learn other languages before going more in-depth here. I ended making a MVP (minimum viable product) to finish this course. Some functionalities that are to be implemented in the future are for example: 
+
+Much of the functionalities that I projected in the beginning I ended up not creating them as I was dedicating too much time and I want to dedicate to learn other languages before going more in-depth here. I ended making a MVP (minimum viable product) to finish this course. Some functionalities that are to be implemented in the future are for example: 
 - Develop `weekly planner` to allow the user to replace some meals manually (getting options that were not originally generated).
 - Enhance the randomizer to select a meal based on the ingredients/leftovers that the user has.
 - Work on a global basis database of ingredients and recipes and then allow user to personalize the portfolio.
 
-One day I will get back to this project to further enhance it, but for now it fullfills my needs.
-I've also ended up dealing with a lot more JavaScript than I intended originally. Had to learn in order to develop draggability function in the `weekly planner` and to use JQuery library to learn how to make a page dinamically update and comunnicate with backend (got to admit that I had some of help of AI to make that last part work in 100%).
+One day I will get back to this project to further enhance it, but for now it fulfills my needs.
+
+I've also ended up dealing with a lot more JavaScript than I intended originally. Had to learn in order to develop draggability function in the `weekly planner` and to use JQuery library to learn how to make a page dinamically update and communicate with backend (got to admit that I had some of help of AI to make that last part work in 100%).
+
 This project ended being perfect to end this course: being challenging and touching almost every topic that was studied throughout the course, while learning how to better manage expectations, frustations and growing as a person with the programming tool on its toolbelt to solve further challenges that may arise in my future.
+
 This was CS50!# CS50xFinalproject
