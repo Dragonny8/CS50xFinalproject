@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Welcome to the Meal Decider
+{% endblock %}
+
+{% block main %}
+<img src="{{ url_for('static', filename='Chefs.png') }}" alt="App Logo" width="250" height="auto">
+<form action="/planner" method="post" onsubmit="updateMealOrder()">
+<p> Here is your menu for the week! Meals are interchageable by dragging! Rearrange to your preference or generate a new menu for the week!</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Day 1</th>
+            <th>Day 2</th>
+            <th>Day 3</th>
+            <th>Day 4</th>
+            <th>Day 5</th>
+            <th>Day 6</th>
+            <th>Day 7</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Display of random generated list for a week of planned recipes -->
+        <tr>
+            <td>Lunch</td>
+        {% for i in range(0, list|length // 2) %}
+            <td class="choice" id="lunch{{ i }}" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="leaveDrop(event)">{{ list[i] }}</td>
+        {% endfor %}
+        </tr>
+        <tr>
+            <td>Dinner</td>
+        {% for i in range(list|length // 2, list|length) %}
+            <td class="choice" id="dinner{{ i }}" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="leaveDrop(event)">{{ list[i] }}</td>
+        {% endfor %}
+        </tr>
+    </tbody>
+</table>
+<!-- hidden field to store the random generated list after change of user -->
+<input type="hidden" id="updatedMeals" name="updatedMeals" value="">
+<!-- possibility to generate a new menu -->
+<p style="background-color: rgb(74, 72, 72); color: white; border-radius: 10px;"> You'd like to generate a new menu?</p>
+<button class="btn btn-red" type="submit" name="action" value="selector">New Menu</button>         <button class="btn btn-green" type="submit" name="action" value="save">Save</button>
+</form>
+
+<br>
+
+
+<!-- grocery list -->
+<div id="grocery-list" class="printable">
+    <h1>Grocery List</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ingredient_id, details in grocery %}
+            <tr>
+                <td>{{ details.ingredient_name }}</td>
+                <td>{{ details.quantity }}</td>
+                <td>{{ details.unit }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> <!-- Closing table tag -->
+</div>
+<!-- function to print pdf of grocery list for the week plan -->
+<button onclick="window.print()">Print Grocery List</button>
+
+
+
+<script>
+//set of functions to allow the user to drag and swap meals throughout the week
+function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+    event.target.classList.add("drag-over");
+}
+
+function leaveDrop(event) {
+    event.target.classList.remove("drag-over");
+}
+
+function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("text");
+    var draggedElement = document.getElementById(data);
+    var targetElement = event.target;
+    // Swap the contents
+    var temp = draggedElement.innerHTML;
+    draggedElement.innerHTML = targetElement.innerHTML;
+    targetElement.innerHTML = temp;
+    targetElement.classList.remove("drag-over");
+// after drop, the hidden field will be updated with the sequence the user organized
+    updateMealOrder();
+}
+
+// function to update the hidden field and save as updatedMeals to send to the backend for saving for future display
+function updateMealOrder() {
+    const mealCells = document.querySelectorAll(".choice");
+    let updatedMeals = [];
+
+    mealCells.forEach(cell => {
+        updatedMeals.push(cell.innerHTML.trim());
+    });
+
+    document.getElementById("updatedMeals").value = JSON.stringify(updatedMeals);
+}
+
+</script>
+{% endblock %}

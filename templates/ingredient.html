@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Ingredients
+{% endblock %}
+
+{% block main %}
+
+<!-- possibility to submit a new ingredient -->
+<img src="{{ url_for('static', filename='Chefs.png') }}" alt="App Logo" width="300" height="auto">
+    <form action="/ingredient" method="post">
+        <div class="mb-3">
+            <p>Want to submit a new ingredient?</p>
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="ingredient" placeholder="Ingredient" type="text">
+        </div>
+        <button class="btn btn-green" type="submit">Submit</button>
+    </form>
+
+<br>
+<!-- possibility to remove an existing ingredient-->
+    <form action="/remove" method="post">
+        <div class="mb-3">
+            <p>Remove an existing ingredient?</p>
+            {% set sorted_options = options|sort(attribute='name') %}
+            <select id="searchable-dropdown" name="dropdown">
+                {% for option in sorted_options %}
+                    <option></option>
+                    <option value="{{ option.name }}">{{ option.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="btn btn-red" type="submit">Remove</button>
+    </form>
+
+    <!-- script to make a searchable dropdown (from JQuery)-->
+    <script>
+        $(document).ready(function() {
+            $('#searchable-dropdown').select2({placeholder: "Select an ingredient"});
+        });
+    </script>
+    <br>
+
+    {% if message %}
+    <p class="message">{{ message }}</p>
+    {% endif %}
+{% endblock %}
+

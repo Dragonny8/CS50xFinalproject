@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ recipe }}
+{% endblock %}
+
+<!-- page to show ingredients of selected recipe -->
+
+{% block main %}
+    <img src="{{ url_for('static', filename='Chefs.png') }}" alt="App Logo" width="250" height="auto">
+    <h1>{{ recipe }}</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in data %}
+            <tr>
+                <td>{{ data.ingredient_name }}</td>
+                <td>{{ data.quantity }}</td>
+                <td>{{ data.unit}}</td>
+
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

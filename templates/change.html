@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Password Change
+{% endblock %}
+
+{% block main %}
+<!-- page for password change -->
+
+<img src="{{ url_for('static', filename='Chefs.png') }}" alt="App Logo" width="250" height="auto">
+    <form action="/change" method="post">
+        <p>Change Password:</p>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="old" placeholder="Old Password" type="password">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="password" placeholder=" New Password" type="password">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="confirmation" placeholder="Confirm Password" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Change</button>
+    </form>
+
+    <br>
+    {% if message %}
+    <p class="message">{{ message }}</p>
+    {% endif %}
+{% endblock %}

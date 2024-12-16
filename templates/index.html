@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+<!-- page for index and instructions -->
+{% block main %}
+<img src="{{ url_for('static', filename='Chefs.png') }}" alt="App Logo" width="250" height="auto">
+<h1>Welcome to Chef's Choice.</h1>
+<p>This is a web application where the chef can decide for you what you are going to eat!</p>
+<p>Sometimes it is hard to pick something to cook right? No worries, the Chef is here for you!</p>
+<h2>Instructions</h2>
+<ul style="text-align: left;">
+    <li>Use the "Ingredient" tab to input the ingredients you usually use.</li>
+    <li>Use the "Add Recipe" tab to create the recipes you like. Servings should be for person.</li>
+    <li>You can always view the recipes that you have in your portfolio in the "Recipes" tab. You can also remove recipes that you don't want.</li>
+    <li>Finally, use the "Meal Decider" tab for the Chef to choose a meal from your portfolio so that you don't have the fuss of choosing what to cook!</li>
+    <li>Further, if you'd like to have a whole week planned by the Chef in the "Weekly Planner" tab. It will also provide you a grocery list for the week according to the meals per person!</li>
+    <li>The "Weekly Plan" tab saves your weekly plan for you to check it out!</li>
+</ul>
+    {% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Welcome to the Meal Decider
+{% endblock %}
+<!-- page for intro of the randomizer -->
+{% block main %}
+<img src="{{ url_for('static', filename='Chefs.png') }}" alt="App Logo" width="250" height="auto">
+<form action="/selector" method="post">
+<p> Do you want for the Chef to choose what you are going to eat?</p>
+<button class="btn btn-green" type="submit" name="action" value="selector">Please, do!</button>
+</form>
+<br>
+<br>
+{% if message %}
+<p class="message">{{ message }}</p>
+{% endif %}
+
+{% endblock %}

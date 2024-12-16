@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Welcome to the Meal Decider
+{% endblock %}
+
+<!-- page for weekly planner intro -->
+{% block main %}
+<img src="{{ url_for('static', filename='Chefs.png') }}" alt="App Logo" width="250" height="auto">
+<form action="/planner" method="post">
+<p> Do you want for the Chef to choose what you are going to eat for the week?</p>
+<button class="btn btn-green" type="submit" name="action" value="selector">Please, do!</button>
+</form>
+
+<br>
+{% if message %}
+<p class="message">{{ message }}</p>
+{% endif %}
+
+{% endblock %}

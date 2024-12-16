@@ -1,0 +1,153 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Recipes
+{% endblock %}
+
+{% block main %}
+<div class="section">
+    <img src="{{ url_for('static', filename='Chefs.png') }}" alt="App Logo" width="250" height="auto">
+    <h1>Let's create a recipe!</h1>
+<!-- function to create a recipe, addin ingredients dinamically, with quantity and unit-->
+    <br>
+    {% set sorted_ingredients = ingredients|sort(attribute='name') %}
+    <label for="ingredient">Please, select an Ingredient:</label>
+    <select id="searchable-ingredient" name="ingredient">
+        {% for ingredient in sorted_ingredients %}
+        <option></option>
+        <option value="{{ ingredient.name }}">{{ ingredient.name }}</option>
+        {% endfor %}
+    </select><br>
+    <p>What amount should we use per person?</p>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" min="0" step="any"><br><br>
+
+    <label for="unit">Unit:</label>
+
+    <select id="unit">
+        <option value="grams">grams</option>
+        <option value="milliliters">milliliters</option>
+        <option value="units">units</option>
+        <option value="as needed">as needed</option>
+      </select>
+<br>
+      <p>Note: If unit is "as needed", please input 0 as quantity!</p>
+    <button type="button" onclick="addIngredient()">Add Ingredient</button>
+<br>
+    <div id="messages" style="color: white; background-color: cadetblue;"></div>
+    <h2>Ingredients List</h2>
+    <ul id="ingredient-list">
+        <li class="header">
+            <span>Ingredient</span>
+            <span>Quantity</span>
+            <span>Unit</span>
+        </li>
+        <!-- Dynamically updated list of added ingredients -->
+    </ul>
+
+    <label for="recipe-name">Recipe Name:</label>
+    <input type="text" id="recipe-name"> 
+
+    <button type="button" onclick="submitRecipe()">Submit Recipe</button>
+</div>
+
+<script>
+
+    //this script was assisted by ChatGPT in order to dinamically update ingredient list as the user is inputting recipe and to send the data to the backend
+    function addIngredient() {
+        let ingredient = document.getElementById('searchable-ingredient').value;
+        let quantity = document.getElementById('quantity').value;
+        let unit = document.getElementById('unit').value;
+        let messagesDiv = document.getElementById('messages');
+
+        if (!ingredient || !quantity || !unit) {
+            messagesDiv.textContent = "Please fill out all fields.";
+            return;
+        }
+
+        messagesDiv.textContent = "";
+
+        let listItem = document.createElement('li');
+
+        let ingredientSpan = document.createElement('span');
+        ingredientSpan.textContent = ingredient;
+
+        let quantitySpan = document.createElement('span');
+        quantitySpan.textContent = quantity;
+
+        let unitSpan = document.createElement('span');
+        unitSpan.textContent = unit;
+
+        let removeButton = document.createElement('button');
+        removeButton.textContent = "Remove";
+        removeButton.onclick = function() {
+            listItem.remove();
+        };
+
+        listItem.appendChild(ingredientSpan);
+        listItem.appendChild(quantitySpan);
+        listItem.appendChild(unitSpan);
+        listItem.appendChild(removeButton);
+
+        document.getElementById('ingredient-list').appendChild(listItem);
+    }
+    $(document).ready(function() {
+            $('#searchable-ingredient').select2({placeholder: "Select an ingredient"});
+        });
+
+
+    function submitRecipe() {
+        let messagesDiv = document.getElementById("messages");
+        let recipeName = document.getElementById("recipe-name").value;
+        let ingredientList = document.getElementById("ingredient-list");
+        let ingredients = [];
+
+        if (!recipeName) {
+            messagesDiv.textContent = "Please enter a recipe name.";
+            return;
+        }
+
+        // Gather ingredients from the list to show dinamically
+        Array.from(ingredientList.children).forEach((item) => {
+            if (!item.classList.contains("header")) {
+                let spans = item.getElementsByTagName("span");
+                ingredients.push({
+                    ingredient: spans[0].textContent,
+                    quantity: spans[1].textContent,
+                    unit: spans[2].textContent,
+                });
+            }
+        });
+        // validation
+        if (ingredients.length === 0) {
+            messagesDiv.textContent = "Please add at least one ingredient";
+            return;
+        }
+
+        // Send the data to the backend
+        fetch("/addrecipe", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: recipeName,
+                ingredients: ingredients,
+            }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            messagesDiv.textContent = data.message;
+            document.getElementById("recipe-name").value = "";
+            document.getElementById("ingredient-list").innerHTML = `
+                <li class="header">
+                    <span>Ingredient</span>
+                    <span>Quantity</span>
+                    <span>Unit</span>
+                </li>
+            `;
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+</script>
+{% endblock %}

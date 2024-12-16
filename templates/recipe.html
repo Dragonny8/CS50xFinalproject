@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    recipes
+{% endblock %}
+
+<!-- page to search recipes or delete them from portfolio -->
+{% block main %}
+<div class="section">
+    <img src="{{ url_for('static', filename='Chefs.png') }}" alt="App Logo" width="300" height="auto">
+    <form action="/recipe" method="post">
+        <div class="mb-3">
+            <p>Tell me the recipe you'd like to search or remove:</p>
+            {% set sorted_options = options|sort(attribute='name') %}
+            <select id="searchable-dropdown" name="dropdown">
+                {% for option in sorted_options %}
+                    <option></option>
+                    <option value="{{ option.name }}">{{ option.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="btn btn-green" type="submit" name="action" value="query">Search</button>
+        <button class="btn btn-red" type="submit" name="action" value="remove">Remove</button>
+    </form>
+</div>
+
+<br>
+{% if message %}
+<p class="message">{{ message }}</p>
+{% endif %}
+
+<script>
+    $(document).ready(function() {
+        $('#searchable-dropdown').select2({placeholder: "Select a recipe"});
+    });
+</script>
+{% endblock %}
