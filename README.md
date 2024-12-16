@@ -1,5 +1,5 @@
 # Chef's Choice
-#### Video Demo:  <[https://www.youtube.com/watch?v=mXjE-Dw96yw]>
+#### Video Demo:  https://www.youtube.com/watch?v=mXjE-Dw96yw
 
 
 #### Brief description and objectives:
