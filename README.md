@@ -72,6 +72,6 @@ One day I will get back to this project to further enhance it, but for now it fu
 
 I've also ended up dealing with a lot more JavaScript than I intended originally. Had to learn in order to develop draggability function in the `weekly planner` and to use JQuery library to learn how to make a page dinamically update and communicate with backend (got to admit that I had some of help of AI to make that last part work in 100%).
 
-This project ended being perfect to end this course: being challenging and touching almost every topic that was studied throughout the course, while learning how to better manage expectations, frustations and growing as a person with the programming tool on its toolbelt to solve further challenges that may arise in my future.
+This project ended being perfect to end this course: being challenging and touching almost every topic that was studied throughout the course, while learning how to better manage expectations, frustrations and growing as a person with the programming tool on its toolbelt to solve further challenges that may arise in my future.
 
 This was CS50!# CS50xFinalproject
